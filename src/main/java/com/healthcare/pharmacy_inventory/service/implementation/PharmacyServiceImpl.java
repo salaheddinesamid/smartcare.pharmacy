@@ -9,6 +9,8 @@ import com.healthcare.pharmacy_inventory.repository.MedicineInventory;
 import com.healthcare.pharmacy_inventory.service.PharmacyService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PharmacyServiceImpl implements PharmacyService {
 
@@ -35,5 +37,16 @@ public class PharmacyServiceImpl implements PharmacyService {
         return new MedicineResponseDto(
                 savedMedicine
         );
+    }
+
+    @Override
+    public List<MedicineResponseDto> getAllMedicines() {
+
+        // Fetch medicines from the db
+        List<Medicine> medicines = medicineInventory.findAll();
+        return
+                medicines.stream()
+                        .map(MedicineResponseDto::new)
+                        .toList();
     }
 }
