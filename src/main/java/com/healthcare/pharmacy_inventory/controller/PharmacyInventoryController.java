@@ -37,7 +37,7 @@ public class PharmacyInventoryController {
                 .body(response);
     }
 
-    @GetMapping("get-all")
+    @GetMapping("get_all")
     public ResponseEntity<ApiResponse<?>> getAllMedicine(){
 
         List<MedicineResponseDto> medicines = pharmacyService.getAllMedicines();
