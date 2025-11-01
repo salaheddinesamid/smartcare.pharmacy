@@ -1,8 +1,6 @@
 package com.healthcare.pharmacy_inventory.controller;
 
-import com.healthcare.pharmacy_inventory.dto.ApiResponse;
-import com.healthcare.pharmacy_inventory.dto.MedicineDto;
-import com.healthcare.pharmacy_inventory.dto.MedicineResponseDto;
+import com.healthcare.pharmacy_inventory.dto.*;
 import com.healthcare.pharmacy_inventory.service.implementation.PharmacyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +50,19 @@ public class PharmacyInventoryController {
     }
 
     @PostMapping("purchase")
-    public ResponseEntity<ApiResponse<?>> purchase(@RequestParam String referenceId, @RequestBody ){
+    public ResponseEntity<ApiResponse<?>> purchase(@RequestBody PurchaseRequestDto request){
+
+        PurchaseResponseDto purchaseResponse = pharmacyService.purchaseMedicine(request);
+
+        ApiResponse<?> response = new ApiResponse<>(
+                true,
+                "Purchase completed successfully",
+                purchaseResponse
+        );
+
+        return ResponseEntity
+                .status(200)
+                .body(response);
 
     }
 }

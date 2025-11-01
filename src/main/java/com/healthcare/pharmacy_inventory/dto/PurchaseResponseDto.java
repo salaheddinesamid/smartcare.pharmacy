@@ -17,6 +17,6 @@ public class PurchaseResponseDto {
     public PurchaseResponseDto(Purchase purchase){
         this.patientId = purchase.getPatientId();
         this.items = purchase.getItems();
-        this.status = purchase.getStatus();
+        this.status = purchase.getStatus().toString();
     }
 }
