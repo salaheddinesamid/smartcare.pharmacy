@@ -50,4 +50,9 @@ public class PharmacyInventoryController {
                         medicines
                 ));
     }
+
+    @PostMapping("purchase")
+    public ResponseEntity<ApiResponse<?>> purchase(@RequestParam String referenceId, @RequestBody ){
+
+    }
 }
