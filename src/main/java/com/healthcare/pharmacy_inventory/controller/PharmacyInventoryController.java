@@ -6,10 +6,9 @@ import com.healthcare.pharmacy_inventory.dto.MedicineResponseDto;
 import com.healthcare.pharmacy_inventory.service.implementation.PharmacyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/pharmacy")
@@ -36,5 +35,24 @@ public class PharmacyInventoryController {
         return ResponseEntity
                 .status(200)
                 .body(response);
+    }
+
+    @GetMapping("get_all")
+    public ResponseEntity<ApiResponse<?>> getAllMedicine(){
+
+        List<MedicineResponseDto> medicines = pharmacyService.getAllMedicines();
+
+        return ResponseEntity
+                .status(200)
+                .body(new ApiResponse<>(
+                        true,
+                        "",
+                        medicines
+                ));
+    }
+
+    @PostMapping("purchase")
+    public ResponseEntity<ApiResponse<?>> purchase(@RequestParam String referenceId, @RequestBody ){
+
     }
 }

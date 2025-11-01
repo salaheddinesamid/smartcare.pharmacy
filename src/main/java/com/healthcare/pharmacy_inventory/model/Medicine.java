@@ -21,11 +21,17 @@ public class Medicine {
     @Column(name = "medicine_name")
     private String medicineName;
 
+    @Column(name = "quantity")
+    private Integer quantity;
+
     @Column(name = "manufacturing_date")
     private LocalDate manufacturingDate;
 
     @Column(name = "expiration_date")
     private LocalDate expirationDate;
+
+    @Column(name = "prescription_required")
+    private boolean prescriptionRequired;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)

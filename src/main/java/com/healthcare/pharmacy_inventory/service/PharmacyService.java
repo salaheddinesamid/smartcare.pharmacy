@@ -2,6 +2,10 @@ package com.healthcare.pharmacy_inventory.service;
 
 import com.healthcare.pharmacy_inventory.dto.MedicineDto;
 import com.healthcare.pharmacy_inventory.dto.MedicineResponseDto;
+import com.healthcare.pharmacy_inventory.dto.PurchaseRequestDto;
+import com.healthcare.pharmacy_inventory.dto.PurchaseResponseDto;
+
+import java.util.List;
 
 public interface PharmacyService {
 
@@ -12,4 +16,17 @@ public interface PharmacyService {
      * @return
      */
     MedicineResponseDto addNewMedicine(MedicineDto medicineDto);
+
+    /**
+     * This function fetches the medicines that exists in the system
+     * @return
+     */
+    List<MedicineResponseDto> getAllMedicines();
+
+    /**
+     * This method handles patient orders
+     * @param purchaseRequestDto
+     * @return
+     */
+    PurchaseResponseDto purchaseMedicine(PurchaseRequestDto purchaseRequestDto);
 }
