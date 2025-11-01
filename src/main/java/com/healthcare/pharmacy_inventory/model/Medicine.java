@@ -26,7 +26,8 @@ public class Medicine {
     private String brandName;
 
     @Column(name = "category")
-    private String category; // e.g., Antibiotic, Analgesic, Antipyretic
+    @Enumerated(EnumType.STRING)
+    private MedicineCategory category; // e.g., Antibiotic, Analgesic, Antipyretic
 
     @Column(name = "dosage_form")
     private String dosageForm; // e.g., Tablet, Capsule, Syrup

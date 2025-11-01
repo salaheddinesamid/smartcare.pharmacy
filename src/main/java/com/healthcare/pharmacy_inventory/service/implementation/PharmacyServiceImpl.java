@@ -35,10 +35,21 @@ public class PharmacyServiceImpl implements PharmacyService {
             throw new MedicineAlreadyExistsException();
         }
         Medicine medicine = new Medicine();
-        medicine.setMedicineName(medicineDto.getName());
+        medicine.setMedicineName(medicineDto.getMedicineName());
         medicine.setReferenceNumber(medicineDto.getReferenceNumber());
         medicine.setManufacturingDate(medicineDto.getManufacturingDate());
         medicine.setExpirationDate(medicineDto.getExpirationDate());
+        medicine.setBatchNumber(medicineDto.getBatchNumber());
+        medicine.setBrandName(medicine.getBrandName());
+        medicine.setCategory(MedicineCategory.valueOf(medicineDto.getCategory()));
+        medicine.setDosageForm(medicineDto.getDosageForm());
+        medicine.setStrength(medicine.getStrength());
+        medicine.setUnitPrice(medicineDto.getUnitPrice());
+        medicine.setStorageTemperature(medicineDto.getStorageTemperature());
+        medicine.setPrescriptionRequired(medicineDto.isPrescriptionRequired());
+        medicine.setSupplierName(medicineDto.getSupplierName());
+        medicine.setDescription(medicineDto.getDescription());
+        medicine.setQuantity(medicineDto.getQuantity());
         medicine.setStatus(MedicineStatus.REGISTERED);
 
         // Save the medicine
