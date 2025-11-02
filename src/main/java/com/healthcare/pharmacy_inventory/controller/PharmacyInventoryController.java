@@ -65,4 +65,17 @@ public class PharmacyInventoryController {
                 .body(response);
 
     }
+
+    @PutMapping("update-quantity")
+    public ResponseEntity<ApiResponse<?>> updateQuantity(@RequestParam Long medicineId, @RequestParam Integer newQuantity){
+
+        pharmacyService.updateQuantity(medicineId,newQuantity);
+        return ResponseEntity
+                .status(200)
+                .body(new ApiResponse<>(
+                        true,
+                        "The new medicine has been successfully updated",
+                        null
+                ));
+    }
 }

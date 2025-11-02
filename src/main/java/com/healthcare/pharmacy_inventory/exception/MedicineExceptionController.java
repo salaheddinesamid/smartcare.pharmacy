@@ -48,4 +48,14 @@ public class MedicineExceptionController {
                 .status(409)
                 .body(response);
     }
+
+    @ExceptionHandler(MedicineQuantityCannotBeNegative.class)
+    public ResponseEntity<ApiResponse<?>> handleNegativeMedicineQuantity(){
+        return ResponseEntity.status(409)
+                .body(new ApiResponse<>(
+                        false,
+                        "",
+                        null
+                ));
+    }
 }

@@ -35,4 +35,17 @@ public interface PharmacyService {
      * @param medicineId
      */
     void removeMedicine(Long medicineId);
+
+    /**
+     * This function handles medicine status update
+     * @param status
+     */
+    void updateMedicineStatus(Long id, String status);
+
+    /**
+     *
+     * @param id
+     * @param newQuantity
+     */
+    void updateQuantity(Long id, Integer newQuantity);
 }

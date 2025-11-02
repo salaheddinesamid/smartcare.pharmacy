@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface MedicineInventory extends JpaRepository<Medicine,Integer> {
+public interface MedicineInventory extends JpaRepository<Medicine,Long> {
 
     boolean existsByReferenceNumber(String referenceNumber);
     Optional<Medicine> findByReferenceNumber(String ref);

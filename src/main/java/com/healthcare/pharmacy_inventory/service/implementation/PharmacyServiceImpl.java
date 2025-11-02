@@ -1,10 +1,7 @@
 package com.healthcare.pharmacy_inventory.service.implementation;
 
 import com.healthcare.pharmacy_inventory.dto.*;
-import com.healthcare.pharmacy_inventory.exception.MedicineAlreadyExistsException;
-import com.healthcare.pharmacy_inventory.exception.MedicineExpiredException;
-import com.healthcare.pharmacy_inventory.exception.MedicineUnavailableException;
-import com.healthcare.pharmacy_inventory.exception.PrescriptionRequiredException;
+import com.healthcare.pharmacy_inventory.exception.*;
 import com.healthcare.pharmacy_inventory.model.*;
 import com.healthcare.pharmacy_inventory.repository.MedicineInventory;
 import com.healthcare.pharmacy_inventory.repository.PurchaseItemRepository;
@@ -102,6 +99,13 @@ public class PharmacyServiceImpl implements PharmacyService {
 
     }
 
+    @Override
+    public void updateMedicineStatus(Long id, String status) {
+        // Fetch the medicine:
+        Medicine m = medicineInventory.findById(id)
+                .orElseThrow();
+    }
+
     /**
      * This method helper is used to process each item in the purchase:
      * @param item
@@ -147,5 +151,19 @@ public class PharmacyServiceImpl implements PharmacyService {
 
     private void checkPrescriptionValidity(String prescriptionRef){
 
+    }
+
+    @Override
+    public void updateQuantity(Long id, Integer newQuantity) {
+        // Fetch medicine from db:
+        Medicine medicine = medicineInventory.findById(id)
+                .orElseThrow();
+
+        if(newQuantity < 0){
+            throw new MedicineQuantityCannotBeNegative();
+        }
+
+        medicine.setQuantity(newQuantity);
+        medicineInventory.save(medicine);
     }
 }
