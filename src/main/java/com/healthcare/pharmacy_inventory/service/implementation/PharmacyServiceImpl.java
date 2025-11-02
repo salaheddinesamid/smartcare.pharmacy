@@ -166,4 +166,12 @@ public class PharmacyServiceImpl implements PharmacyService {
         medicine.setQuantity(newQuantity);
         medicineInventory.save(medicine);
     }
+
+    @Override
+    public List<MedicineResponseDto> searchMedicine(String name, String refNumber) {
+        return
+                medicineInventory.searchMedicine(name,refNumber)
+                        .stream().map(MedicineResponseDto::new)
+                        .toList();
+    }
 }

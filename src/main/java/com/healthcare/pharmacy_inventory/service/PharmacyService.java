@@ -48,4 +48,12 @@ public interface PharmacyService {
      * @param newQuantity
      */
     void updateQuantity(Long id, Integer newQuantity);
+
+    /**
+     * This function handles medicine search by name or ref number
+     * @param name
+     * @param refNumber
+     * @return
+     */
+    List<MedicineResponseDto> searchMedicine(String name, String refNumber);
 }

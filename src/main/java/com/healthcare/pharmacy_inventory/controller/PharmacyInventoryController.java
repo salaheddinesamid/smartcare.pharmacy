@@ -78,4 +78,18 @@ public class PharmacyInventoryController {
                         null
                 ));
     }
+
+    @GetMapping("search")
+    public ResponseEntity<ApiResponse<?>> search(@RequestParam(required = false) String name, @RequestParam(required = false) String refNumber){
+
+        List<MedicineResponseDto> medicines = pharmacyService.searchMedicine(name,refNumber);
+
+        return ResponseEntity
+                .status(200)
+                .body(new ApiResponse<>(
+                        true,
+                        "",
+                        medicines
+                ));
+    }
 }
