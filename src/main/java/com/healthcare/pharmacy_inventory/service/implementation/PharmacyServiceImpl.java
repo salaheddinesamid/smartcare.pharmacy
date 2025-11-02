@@ -42,7 +42,7 @@ public class PharmacyServiceImpl implements PharmacyService {
         medicine.setBatchNumber(medicineDto.getBatchNumber());
         medicine.setBrandName(medicine.getBrandName());
         medicine.setCategory(MedicineCategory.valueOf(medicineDto.getCategory()));
-        medicine.setDosageForm(medicineDto.getDosageForm());
+        medicine.setDosageForm(MedicineDosageFrom.valueOf(medicineDto.getDosageForm()));
         medicine.setStrength(medicine.getStrength());
         medicine.setUnitPrice(medicineDto.getUnitPrice());
         medicine.setStorageTemperature(medicineDto.getStorageTemperature());
@@ -94,6 +94,11 @@ public class PharmacyServiceImpl implements PharmacyService {
         return new PurchaseResponseDto(
                 savedPurchase
         );
+
+    }
+
+    @Override
+    public void removeMedicine(Long medicineId) {
 
     }
 

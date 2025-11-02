@@ -29,4 +29,10 @@ public interface PharmacyService {
      * @return
      */
     PurchaseResponseDto purchaseMedicine(PurchaseRequestDto purchaseRequestDto);
+
+    /**
+     *
+     * @param medicineId
+     */
+    void removeMedicine(Long medicineId);
 }

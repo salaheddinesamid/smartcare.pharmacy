@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class MedicineResponseDto {
 
-    private Integer medicineId;
+    private Long medicineId;
     private String referenceNumber;
     private String medicineName;
     private LocalDate manufacturingDate;

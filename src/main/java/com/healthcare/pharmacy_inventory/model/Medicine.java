@@ -30,7 +30,8 @@ public class Medicine {
     private MedicineCategory category; // e.g., Antibiotic, Analgesic, Antipyretic
 
     @Column(name = "dosage_form")
-    private String dosageForm; // e.g., Tablet, Capsule, Syrup
+    @Enumerated(EnumType.STRING)
+    private MedicineDosageFrom dosageForm; // e.g., Tablet, Capsule, Syrup
 
     @Column(name = "strength")
     private String strength; // e.g., 500mg, 250mg/5ml
