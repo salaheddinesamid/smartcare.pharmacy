@@ -17,7 +17,7 @@ public interface MedicineInventory extends JpaRepository<Medicine,Long> {
         SELECT m FROM Medicine m
         WHERE 
             (:name IS NULL OR LOWER(m.medicineName) LIKE LOWER(CONCAT('%', :name, '%')))
-        AND 
+        OR 
             (:refNumber IS NULL OR LOWER(m.referenceNumber) LIKE LOWER(CONCAT('%', :refNumber, '%')))
     """)
     List<Medicine> searchMedicine(@Param("name") String name, @Param("refNumber") String refNumber);
