@@ -18,9 +18,7 @@ public class SecurityConfiguration {
         httpSecurity
                 .csrf()
                 .disable()
-                .authorizeHttpRequests(auth->{
-                    auth.requestMatchers("/api/pharmacy/**").permitAll();
-                });
+                .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry.anyRequest().permitAll());
 
         return httpSecurity.build();
     }

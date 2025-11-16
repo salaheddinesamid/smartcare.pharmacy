@@ -174,4 +174,16 @@ public class PharmacyServiceImpl implements PharmacyService {
                         .stream().map(MedicineResponseDto::new)
                         .toList();
     }
+
+    @Override
+    public void suspendMedicine(Long medicineId) {
+        // Fetch the medicine from the db:
+        Medicine medicine =
+                medicineInventory.findById(medicineId).orElseThrow();
+
+        medicine.setStatus(MedicineStatus.SUSPENDED);
+
+        // save the medicine:
+        medicineInventory.save(medicine);
+    }
 }

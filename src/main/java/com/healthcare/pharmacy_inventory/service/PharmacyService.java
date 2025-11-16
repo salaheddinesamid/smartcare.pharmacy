@@ -56,4 +56,10 @@ public interface PharmacyService {
      * @return
      */
     List<MedicineResponseDto> searchMedicine(String name, String refNumber);
+
+    /**
+     * This function handles medicine suspension
+     * @param medicineId
+     */
+    void suspendMedicine(Long medicineId);
 }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/pharmacy")
@@ -19,7 +20,7 @@ public class PharmacyInventoryController {
         this.pharmacyService = pharmacyService;
     }
 
-    @PostMapping("add-medicine")
+    @PostMapping("medicines/add")
     public ResponseEntity<ApiResponse<?>> addNewMedicine(@RequestBody MedicineDto medicineDto){
 
         MedicineResponseDto medicine = pharmacyService.addNewMedicine(medicineDto);
@@ -35,7 +36,7 @@ public class PharmacyInventoryController {
                 .body(response);
     }
 
-    @GetMapping("get_all")
+    @GetMapping("medicines/get_all")
     public ResponseEntity<ApiResponse<?>> getAllMedicine(){
 
         List<MedicineResponseDto> medicines = pharmacyService.getAllMedicines();
@@ -49,7 +50,7 @@ public class PharmacyInventoryController {
                 ));
     }
 
-    @PostMapping("purchase")
+    @PostMapping("medicines/purchase")
     public ResponseEntity<ApiResponse<?>> purchase(@RequestBody PurchaseRequestDto request){
 
         PurchaseResponseDto purchaseResponse = pharmacyService.purchaseMedicine(request);
@@ -66,7 +67,7 @@ public class PharmacyInventoryController {
 
     }
 
-    @PutMapping("update-quantity")
+    @PutMapping("medicines/update-quantity")
     public ResponseEntity<ApiResponse<?>> updateQuantity(@RequestParam Long medicineId, @RequestParam Integer newQuantity){
 
         pharmacyService.updateQuantity(medicineId,newQuantity);
@@ -79,7 +80,7 @@ public class PharmacyInventoryController {
                 ));
     }
 
-    @GetMapping("search")
+    @GetMapping("medicines/search")
     public ResponseEntity<ApiResponse<?>> search(@RequestParam(required = false) String name, @RequestParam(required = false) String refNumber){
 
         List<MedicineResponseDto> medicines = pharmacyService.searchMedicine(name,refNumber);
@@ -91,5 +92,15 @@ public class PharmacyInventoryController {
                         "",
                         medicines
                 ));
+    }
+
+    @PutMapping("medicines/suspend")
+    public ResponseEntity<?> suspend(@RequestParam Long medicineId){
+        // Act:
+        pharmacyService.suspendMedicine(medicineId);
+
+        return ResponseEntity
+                .status(200)
+                .body(Map.of("message","The medicine has been suspended successfully"));
     }
 }
